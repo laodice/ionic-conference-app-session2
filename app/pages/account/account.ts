@@ -11,13 +11,17 @@ import { UserData } from '../../providers/user-data';
 })
 export class AccountPage {
   username: string;
-
+  firstname: string;
+  lastname: string;
+  
   constructor(public alertCtrl: AlertController, public nav: NavController, public userData: UserData) {
 
   }
 
   ngAfterViewInit() {
     this.getUsername();
+	this.getFirstname();
+	this.getLastName();
   }
 
   updatePicture() {
@@ -53,6 +57,18 @@ export class AccountPage {
   getUsername() {
     this.userData.getUsername().then((username) => {
       this.username = username;
+    });
+  }
+  
+  getFirstname() {
+	this.userData.getFirstname().then((firstname) => {
+      this.firstname = firstname;
+    });
+  }
+  
+  getLastName() {
+	this.userData.getLastname().then((lastname) => {
+      this.lastname = lastname;
     });
   }
 
