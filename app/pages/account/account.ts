@@ -13,15 +13,18 @@ export class AccountPage {
   username: string;
   firstname: string;
   lastname: string;
+  description: string;
+  interests: string;
   
   constructor(public alertCtrl: AlertController, public nav: NavController, public userData: UserData) {
-
   }
 
   ngAfterViewInit() {
     this.getUsername();
 	this.getFirstname();
 	this.getLastName();
+	this.getDescription();
+	this.getInterests();
   }
 
   updatePicture() {
@@ -54,6 +57,56 @@ export class AccountPage {
     alert.present();
   }
 
+  changePassword() {
+    console.log('Clicked to change password');
+  }
+  
+  changeDescription() {
+	let alert = this.alertCtrl.create({
+      title: 'Change Description',
+      buttons: [
+        'Cancel'
+      ]
+    });
+    alert.addInput({
+      name: 'description',
+      value: this.description,
+      placeholder: 'description'
+    });
+    alert.addButton({
+      text: 'Ok',
+      handler: data => {
+        this.userData.setDescription(data.description);
+        this.getDescription();
+      }
+    });
+
+    alert.present();
+  }
+  
+  changeInterests() {
+	let alert = this.alertCtrl.create({
+      title: 'Change Interests',
+      buttons: [
+        'Cancel'
+      ]
+    });
+    alert.addInput({
+      name: 'interests',
+      value: this.interests,
+      placeholder: 'interests'
+    });
+    alert.addButton({
+      text: 'Ok',
+      handler: data => {
+        this.userData.setInterests(data.interests);
+        this.getInterests();
+      }
+    });
+
+    alert.present();
+  }
+  
   getUsername() {
     this.userData.getUsername().then((username) => {
       this.username = username;
@@ -71,9 +124,17 @@ export class AccountPage {
       this.lastname = lastname;
     });
   }
-
-  changePassword() {
-    console.log('Clicked to change password');
+  
+  getDescription() {
+	this.userData.getDescription().then((description) => {
+      this.description = description;
+    });
+  }
+  
+  getInterests() {
+	this.userData.getInterests().then((interests) => {
+      this.interests = interests;
+    });
   }
 
   logout() {

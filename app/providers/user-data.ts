@@ -32,11 +32,13 @@ export class UserData {
     this.events.publish('user:login');
   }
 
-  signup(username, firstname, lastname) {
+  signup(username, firstname, lastname, description, interests) {
     this.storage.set(this.HAS_LOGGED_IN, true);
     this.setUsername(username);
 	this.setFirstname(firstname);
 	this.setLastname(lastname);
+	this.setDescription(description);
+	this.setInterests(interests);
     this.events.publish('user:signup');
   }
 
@@ -58,6 +60,14 @@ export class UserData {
     this.storage.set('lastname', lastname);
   }
 
+  setDescription(description) {
+    this.storage.set('userdescription', description);
+  }
+  
+  setInterests(interests) {
+    this.storage.set('userinterests', interests);
+  }
+  
   getUsername() {
     return this.storage.get('username').then((value) => {
       return value;
@@ -72,6 +82,18 @@ export class UserData {
 
   getLastname() {
     return this.storage.get('lastname').then((value) => {
+		return value;
+	});
+  }
+  
+  getDescription() {
+	return this.storage.get('userdescription').then((value) => {
+		return value;
+	});
+  }
+  
+  getInterests() {
+	return this.storage.get('userinterests').then((value) => {
 		return value;
 	});
   }
