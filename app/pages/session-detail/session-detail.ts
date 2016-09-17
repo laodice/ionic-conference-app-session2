@@ -27,11 +27,13 @@ export class SessionDetailPage {
   
   addParticipation() {
     console.log('Clicked participate');
+    this.userData.addFavorite(this.session.name);
     this.showParticipate = false;
   }
   
   cancelParticipation() {
     console.log('Clicked on cancel');
+    this.userData.removeFavorite(this.session.name);
     this.showParticipate = true;
   }
 }
