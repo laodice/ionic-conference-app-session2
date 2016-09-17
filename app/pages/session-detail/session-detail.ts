@@ -21,7 +21,7 @@ export class SessionDetailPage {
     
     this.userData.hasLoggedIn().then((hasLoggedIn) => {
       this.loggedIn = hasLoggedIn === 'true';
-      this.isFavourite = false;
+      this.isFavourite = this.userData.hasFavorite(this.session.name);
     });
   }
   
