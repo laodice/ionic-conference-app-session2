@@ -23,25 +23,25 @@ export class SessionDetailPage {
     public sessionData: SessionData
   ) {
     this.session = navParams.data;
-    
+
     this.userData.hasLoggedIn().then((hasLoggedIn) => {
       this.loggedIn = hasLoggedIn === 'true';
       this.isFavourite = this.userData.hasFavorite(this.session.name);
     });
   }
-  
+
   addParticipation() {
     this.userData.addFavorite(this.session.name);
     this.sessionData.addParticipant(this.session.name, this.userData);
     this.isFavourite = true;
   }
-  
+
   cancelParticipation() {
     this.userData.removeFavorite(this.session.name);
     this.sessionData.removeParticipant(this.session.name, this.userData);
     this.isFavourite = false;
   }
-  
+
   seeOtherParticipants() {
     console.log('Clicked to see other participants');
     this.navCtrl.push(ParticipantsPage);

@@ -18,7 +18,7 @@ export class ParticipantsPage {
   slides: Slide[];
   session: any;
   participants: any;
-  
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -27,8 +27,9 @@ export class ParticipantsPage {
   ) {
     console.log('ParticipantsPage');
     this.session = navParams.data;
-    
+
     this.participants = this.sessionData.getParticipants(this.session.name);
+
     console.log(this.participants);
     this.slides = [
       {
