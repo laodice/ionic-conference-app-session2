@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 
+import { NavController } from 'ionic-angular';
 import { NavParams } from 'ionic-angular';
 
+import { ParticipantsPage } from '../participants/participants';
 import { UserData } from '../../providers/user-data';
+import { SessionData } from '../../providers/session-data';
 
 
 @Component({
@@ -14,8 +17,10 @@ export class SessionDetailPage {
   isFavourite = false;
 
   constructor(
+    public navCtrl: NavController,
     public navParams: NavParams,
-    public userData: UserData
+    public userData: UserData,
+    public sessionData: SessionData
   ) {
     this.session = navParams.data;
     
@@ -27,15 +32,18 @@ export class SessionDetailPage {
   
   addParticipation() {
     this.userData.addFavorite(this.session.name);
+    this.sessionData.addParticipant(this.session.name, this.userData);
     this.isFavourite = true;
   }
   
   cancelParticipation() {
     this.userData.removeFavorite(this.session.name);
+    this.sessionData.removeParticipant(this.session.name, this.userData);
     this.isFavourite = false;
   }
   
   seeOtherParticipants() {
     console.log('Clicked to see other participants');
+    this.navCtrl.push(ParticipantsPage);
   }
 }
