@@ -18,4 +18,8 @@
   <p>{{session.location}}</p>
 
   <p>{{session.description}}</p>
+  
+  <p [hidden]="showParticipate==false">
+    <button (click)="addParticipant()">Participate</button>
+  </p>
 </ion-content>
