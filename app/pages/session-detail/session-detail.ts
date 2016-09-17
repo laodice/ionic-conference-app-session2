@@ -10,7 +10,8 @@ import { UserData } from '../../providers/user-data';
 })
 export class SessionDetailPage {
   session: any;
-  showParticipate = false;
+  loggedIn = false;
+  showParticipate = true;
 
   constructor(
     public navParams: NavParams,
@@ -19,11 +20,18 @@ export class SessionDetailPage {
     this.session = navParams.data;
     
     this.userData.hasLoggedIn().then((hasLoggedIn) => {
-      this.showParticipate = hasLoggedIn === 'true';
+      this.loggedIn = hasLoggedIn === 'true';
+      this.showParticipate = true;
     });
   }
   
-  addParticipant() {
+  addParticipation() {
     console.log('Clicked participate');
+    this.showParticipate = false;
+  }
+  
+  cancelParticipation() {
+    console.log('Clicked on cancel');
+    this.showParticipate = true;
   }
 }

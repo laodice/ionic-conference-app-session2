@@ -19,7 +19,13 @@
 
   <p>{{session.description}}</p>
   
-  <p [hidden]="showParticipate==false">
-    <button (click)="addParticipant()">Participate</button>
+  <p [hidden]="loggedIn == false || showParticipate==false">
+    <button (click)="addParticipation()">Participate</button>
   </p>
+  
+  <p [hidden]="loggedIn == false || showParticipate==true">
+    <button (click)="cancelParticipation()">Cancel participation</button>
+  </p>
+  
+  
 </ion-content>
