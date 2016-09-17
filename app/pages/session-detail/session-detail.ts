@@ -32,7 +32,9 @@ export class SessionDetailPage {
 
   addParticipation() {
     this.userData.addFavorite(this.session.name);
-    this.sessionData.addParticipant(this.session.name, this.userData);
+    this.sessionData.addParticipant(
+      this.session.name,
+      this.userData);
     this.isFavourite = true;
   }
 
@@ -43,7 +45,8 @@ export class SessionDetailPage {
   }
 
   seeOtherParticipants() {
-    console.log('Clicked to see other participants');
-    this.navCtrl.push(ParticipantsPage);
+    this.navCtrl.push(ParticipantsPage, {
+      session: this.session
+    });
   }
 }

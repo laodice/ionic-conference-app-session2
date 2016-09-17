@@ -25,23 +25,26 @@ export class ParticipantsPage {
     public menu: MenuController,
     public sessionData: SessionData
   ) {
-    console.log('ParticipantsPage');
-    this.session = navParams.data;
-
+    this.session = navParams.get('session');
     this.participants = this.sessionData.getParticipants(this.session.name);
+    let index = 0;
 
-    console.log(this.participants);
-    this.slides = [
-      {
-        username: 'Welcome to <b>ICA</b>',
+    this.slides = [];
+    do {
+      this.slides.push(
+        {
+        username: 'hello',
         description: 'The <b>Ionic Conference App</b> is a practical preview of the Ionic Framework in action, and a demonstration of proper code use.',
         interests: 'img/ica-slidebox-img-1.png',
-      },
-      {
-        username: 'Welcome to <b>ICA</b>',
-        description: 'The <b>Ionic Conference App</b> is a practical preview of the Ionic Framework in action, and a demonstration of proper code use.',
-        interests: 'img/ica-slidebox-img-1.png',
-      }
-    ];
+      });
+
+      index++;
+    } while (index < this.participants.length);
   }
-}
+
+  getUsername(userData) {
+    return userData.getUsername().then((username) => {
+      return username;
+    });
+  }
+ }
