@@ -10,7 +10,7 @@ import { UserData } from '../../providers/user-data';
   templateUrl: 'build/pages/signup/signup.html'
 })
 export class SignupPage {
-  signup: {username?: string, password?: string} = {};
+  signup: {username?: string, password?: string, firstname?: string, lastname?: string, description?: string, interests?: string} = {};
   submitted = false;
 
   constructor(public navCtrl: NavController, public userData: UserData) {}
@@ -19,7 +19,7 @@ export class SignupPage {
     this.submitted = true;
 
     if (form.valid) {
-      this.userData.signup(this.signup.username);
+      this.userData.signup(this.signup.username, this.signup.firstname, this.signup.lastname, this.signup.description, this.signup.interests);
       this.navCtrl.push(TabsPage);
     }
   }
