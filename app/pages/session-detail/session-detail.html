@@ -19,11 +19,11 @@
 
   <p>{{session.description}}</p>
   
-  <p [hidden]="loggedIn == false || showParticipate==false">
+  <p [hidden]="loggedIn == false || isFavourite==true">
     <button (click)="addParticipation()">Participate</button>
   </p>
   
-  <p [hidden]="loggedIn == false || showParticipate==true">
+  <p [hidden]="loggedIn == false || isFavourite==false">
     <button (click)="cancelParticipation()">Cancel participation</button>
   </p>
   

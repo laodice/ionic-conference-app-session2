@@ -11,7 +11,7 @@ import { UserData } from '../../providers/user-data';
 export class SessionDetailPage {
   session: any;
   loggedIn = false;
-  showParticipate = true;
+  isFavourite = false;
 
   constructor(
     public navParams: NavParams,
@@ -21,19 +21,19 @@ export class SessionDetailPage {
     
     this.userData.hasLoggedIn().then((hasLoggedIn) => {
       this.loggedIn = hasLoggedIn === 'true';
-      this.showParticipate = true;
+      this.isFavourite = false;
     });
   }
   
   addParticipation() {
     console.log('Clicked participate');
     this.userData.addFavorite(this.session.name);
-    this.showParticipate = false;
+    this.isFavourite = true;
   }
   
   cancelParticipation() {
     console.log('Clicked on cancel');
     this.userData.removeFavorite(this.session.name);
-    this.showParticipate = true;
+    this.isFavourite = false;
   }
 }
