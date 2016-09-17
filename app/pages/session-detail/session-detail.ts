@@ -26,14 +26,16 @@ export class SessionDetailPage {
   }
   
   addParticipation() {
-    console.log('Clicked participate');
     this.userData.addFavorite(this.session.name);
     this.isFavourite = true;
   }
   
   cancelParticipation() {
-    console.log('Clicked on cancel');
     this.userData.removeFavorite(this.session.name);
     this.isFavourite = false;
+  }
+  
+  seeOtherParticipants() {
+    console.log('Clicked to see other participants');
   }
 }

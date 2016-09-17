@@ -24,8 +24,9 @@
   </p>
   
   <p [hidden]="loggedIn == false || isFavourite==false">
-    <button (click)="cancelParticipation()">Cancel participation</button>
+    <ion-list inset>
+      <button ion-item (click)="seeOtherParticipants()">See other participants</button>
+      <button ion-item (click)="cancelParticipation()">Cancel participation</button>
+    </ion-list>
   </p>
-  
-  
 </ion-content>
