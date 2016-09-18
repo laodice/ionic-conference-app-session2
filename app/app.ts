@@ -10,6 +10,7 @@ import { SignupPage } from './pages/signup/signup';
 import { TabsPage } from './pages/tabs/tabs';
 import { TutorialPage } from './pages/tutorial/tutorial';
 import { UserData } from './providers/user-data';
+import { SessionData } from './providers/session-data';
 
 interface PageObj {
   title: string;
@@ -118,4 +119,4 @@ class ConferenceApp {
 // See the theming docs for the default values:
 // http://ionicframework.com/docs/v2/theming/platform-specific-styles/
 
-ionicBootstrap(ConferenceApp, [ConferenceData, UserData], { });
+ionicBootstrap(ConferenceApp, [ConferenceData, UserData, SessionData], { });

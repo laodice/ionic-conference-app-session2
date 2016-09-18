@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Participants</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-bounce>
+  <ion-slides [options]="{pager: true}">
+    <ion-slide *ngFor="let slide of slides">
+      <div padding-top text-center>
+        <h2 [innerHTML]="slide.username"></h2>
+        <br />
+        <br />
+        <h4>Description</h4>
+        <p [innerHTML]="slide.description"></p>
+        <br />
+        <br />
+        <h4>Points of interests</h4>
+        <p [innerHTML]="slide.interests"></p>
+      </div>
+      <div>
+        <button (click)="likeUser($event)">Connect with participant</button>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

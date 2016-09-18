@@ -6,6 +6,7 @@ import { Events, LocalStorage, Storage } from 'ionic-angular';
 @Injectable()
 export class UserData {
   _favorites = [];
+  _favoriteParticipants = [];
   HAS_LOGGED_IN = 'hasLoggedIn';
   storage = new Storage(LocalStorage);
 
@@ -26,6 +27,17 @@ export class UserData {
     }
   }
 
+  addFavoriteParticipants(username) {
+    this._favoriteParticipants.push(username);
+  }
+
+  removeFavoriteParticipants(username) {
+    let index = this._favoriteParticipants.indexOf(username);
+    if (index > -1) {
+      this._favoriteParticipants.splice(index, 1);
+    }
+  }
+
   login(username) {
     this.storage.set(this.HAS_LOGGED_IN, true);
     this.setUsername(username);
@@ -35,10 +47,10 @@ export class UserData {
   signup(username, firstname, lastname, description, interests) {
     this.storage.set(this.HAS_LOGGED_IN, true);
     this.setUsername(username);
-	this.setFirstname(firstname);
-	this.setLastname(lastname);
-	this.setDescription(description);
-	this.setInterests(interests);
+    this.setFirstname(firstname);
+    this.setLastname(lastname);
+    this.setDescription(description);
+    this.setInterests(interests);
     this.events.publish('user:signup');
   }
 
@@ -51,11 +63,11 @@ export class UserData {
   setUsername(username) {
     this.storage.set('username', username);
   }
-  
+
   setFirstname(firstname) {
     this.storage.set('firstname', firstname);
   }
-  
+
   setLastname(lastname) {
     this.storage.set('lastname', lastname);
   }
@@ -63,41 +75,41 @@ export class UserData {
   setDescription(description) {
     this.storage.set('userdescription', description);
   }
-  
+
   setInterests(interests) {
     this.storage.set('userinterests', interests);
   }
-  
+
   getUsername() {
     return this.storage.get('username').then((value) => {
       return value;
     });
   }
-  
+
   getFirstname() {
     return this.storage.get('firstname').then((value) => {
-		return value;
-	});
+      return value;
+    });
   }
 
   getLastname() {
     return this.storage.get('lastname').then((value) => {
-		return value;
-	});
+      return value;
+    });
   }
-  
+
   getDescription() {
-	return this.storage.get('userdescription').then((value) => {
-		return value;
-	});
+    return this.storage.get('userdescription').then((value) => {
+      return value;
+    });
   }
-  
+
   getInterests() {
-	return this.storage.get('userinterests').then((value) => {
-		return value;
-	});
+    return this.storage.get('userinterests').then((value) => {
+      return value;
+    });
   }
-  
+
   // return a promise
   hasLoggedIn() {
     return this.storage.get(this.HAS_LOGGED_IN).then((value) => {

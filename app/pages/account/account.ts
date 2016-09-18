@@ -15,16 +15,16 @@ export class AccountPage {
   lastname: string;
   description: string;
   interests: string;
-  
+
   constructor(public alertCtrl: AlertController, public nav: NavController, public userData: UserData) {
   }
 
   ngAfterViewInit() {
     this.getUsername();
-	this.getFirstname();
-	this.getLastName();
-	this.getDescription();
-	this.getInterests();
+    this.getFirstname();
+    this.getLastName();
+    this.getDescription();
+    this.getInterests();
   }
 
   updatePicture() {
@@ -60,9 +60,9 @@ export class AccountPage {
   changePassword() {
     console.log('Clicked to change password');
   }
-  
+
   changeDescription() {
-	let alert = this.alertCtrl.create({
+    let alert = this.alertCtrl.create({
       title: 'Change Description',
       buttons: [
         'Cancel'
@@ -83,9 +83,9 @@ export class AccountPage {
 
     alert.present();
   }
-  
+
   changeInterests() {
-	let alert = this.alertCtrl.create({
+    let alert = this.alertCtrl.create({
       title: 'Change Interests',
       buttons: [
         'Cancel'
@@ -106,33 +106,33 @@ export class AccountPage {
 
     alert.present();
   }
-  
+
   getUsername() {
     this.userData.getUsername().then((username) => {
       this.username = username;
     });
   }
-  
+
   getFirstname() {
-	this.userData.getFirstname().then((firstname) => {
+    this.userData.getFirstname().then((firstname) => {
       this.firstname = firstname;
     });
   }
-  
+
   getLastName() {
-	this.userData.getLastname().then((lastname) => {
+    this.userData.getLastname().then((lastname) => {
       this.lastname = lastname;
     });
   }
-  
+
   getDescription() {
-	this.userData.getDescription().then((description) => {
+    this.userData.getDescription().then((description) => {
       this.description = description;
     });
   }
-  
+
   getInterests() {
-	this.userData.getInterests().then((interests) => {
+    this.userData.getInterests().then((interests) => {
       this.interests = interests;
     });
   }
