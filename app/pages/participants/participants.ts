@@ -4,6 +4,7 @@ import { MenuController, NavController } from 'ionic-angular';
 import { NavParams } from 'ionic-angular';
 
 import { SessionData } from '../../providers/session-data';
+import { UserData } from '../../providers/user-data';
 
 interface Slide {
   username: string;
@@ -23,7 +24,8 @@ export class ParticipantsPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public menu: MenuController,
-    public sessionData: SessionData
+    public sessionData: SessionData,
+    public userData: UserData
   ) {
     this.session = navParams.get('session');
     this.participants = this.sessionData.getParticipants(this.session.name);
@@ -40,5 +42,9 @@ export class ParticipantsPage {
 
       index++;
     }
+  }
+
+  likeUser(event) {
+    console.log('Clicked to connect to user ');
   }
 }

@@ -6,6 +6,7 @@ import { Events, LocalStorage, Storage } from 'ionic-angular';
 @Injectable()
 export class UserData {
   _favorites = [];
+  _favoriteParticipants = [];
   HAS_LOGGED_IN = 'hasLoggedIn';
   storage = new Storage(LocalStorage);
 
@@ -23,6 +24,17 @@ export class UserData {
     let index = this._favorites.indexOf(sessionName);
     if (index > -1) {
       this._favorites.splice(index, 1);
+    }
+  }
+
+  addFavoriteParticipants(username) {
+    this._favoriteParticipants.push(username);
+  }
+
+  removeFavoriteParticipants(username) {
+    let index = this._favoriteParticipants.indexOf(username);
+    if (index > -1) {
+      this._favoriteParticipants.splice(index, 1);
     }
   }
 
