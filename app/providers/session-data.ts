@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 
-import { Events, LocalStorage, Storage } from 'ionic-angular';
+import { Events } from 'ionic-angular';
 
 @Injectable()
 export class SessionData {
-  _participants = [];
-  storage = new Storage(LocalStorage);
+  _participants= [];
 
   constructor(public events: Events) {}
 
   addParticipant(sessionName, userData) {
-    this._participants.push(userData);
-    this.storage.set(sessionName, this._participants);
+    let participantData: string[] = ['username', 'description', 'interests'];
+    let participantData2: string[] = ['username2', 'description2', 'interests2'];
+    this._participants.push(participantData);
+    this._participants.push(participantData2);
   }
 
   removeParticipant(sessionName, userData) {
@@ -19,12 +20,9 @@ export class SessionData {
     if (index > -1) {
       this._participants.splice(index, 1);
     }
-    this.storage.set(sessionName, this._participants);
   }
 
   getParticipants(sessionName) {
-    return this.storage.get(sessionName).then((value) => {
-      return value;
-    });
+    return this._participants;
   }
 }

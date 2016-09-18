@@ -27,24 +27,18 @@ export class ParticipantsPage {
   ) {
     this.session = navParams.get('session');
     this.participants = this.sessionData.getParticipants(this.session.name);
-    let index = 0;
 
+    let index = 0;
     this.slides = [];
-    do {
+    while (index < this.participants.length) {
       this.slides.push(
         {
-        username: 'hello',
-        description: 'The <b>Ionic Conference App</b> is a practical preview of the Ionic Framework in action, and a demonstration of proper code use.',
-        interests: 'img/ica-slidebox-img-1.png',
+        username: this.participants[index][0],
+        description: this.participants[index][1],
+        interests: this.participants[index][2],
       });
 
       index++;
-    } while (index < this.participants.length);
+    }
   }
-
-  getUsername(userData) {
-    return userData.getUsername().then((username) => {
-      return username;
-    });
-  }
- }
+}
