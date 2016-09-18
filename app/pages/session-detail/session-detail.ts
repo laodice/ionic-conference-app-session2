@@ -32,10 +32,9 @@ export class SessionDetailPage {
 
   addParticipation() {
     this.userData.addFavorite(this.session.name);
-    this.sessionData.addParticipant(
-      this.session.name,
-      this.userData);
     this.isFavourite = true;
+
+    this.getParticipantData();
   }
 
   cancelParticipation() {
@@ -48,5 +47,26 @@ export class SessionDetailPage {
     this.navCtrl.push(ParticipantsPage, {
       session: this.session
     });
+  }
+
+  getParticipantData() {
+    let participantData: string[] = [];
+
+    this.userData.getUsername().then((username) => {
+      participantData[0] = username;
+    });
+
+    this.userData.getDescription().then((description) => {
+      participantData[1] = description;
+    });
+
+    this.userData.getInterests().then((interests) => {
+      participantData[2] = interests;
+    });
+
+    // Give time to get all the informations
+    setTimeout(() => {
+        this.sessionData.addParticipant(this.session.name, participantData);
+      }, 1000);
   }
 }

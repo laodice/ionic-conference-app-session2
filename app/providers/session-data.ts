@@ -4,19 +4,28 @@ import { Events } from 'ionic-angular';
 
 @Injectable()
 export class SessionData {
+  sessionName: string;
   _participants= [];
 
-  constructor(public events: Events) {}
-
-  addParticipant(sessionName, userData) {
-    let participantData: string[] = ['username', 'description', 'interests'];
-    let participantData2: string[] = ['username2', 'description2', 'interests2'];
-    this._participants.push(participantData);
-    this._participants.push(participantData2);
+  constructor(public events: Events) {
+    // Add random participants for testing
+    this.addParticipant('session', ['Liza', 'random description', 'ionic, angular']);
+    this.addParticipant('session', ['Victor', 'random description bis', 'java, js, html']);
   }
 
-  removeParticipant(sessionName, userData) {
-    let index = this._participants.indexOf(userData);
+  addParticipant(sessionName, participantData) {
+    this.sessionName = sessionName;
+    this._participants.push(participantData);
+  }
+
+  removeParticipant(sessionName, username) {
+    let index;
+    for (let participant in this._participants) {
+      if (participant[0] === username) {
+        index = this._participants.indexOf(participant);
+      }
+    }
+
     if (index > -1) {
       this._participants.splice(index, 1);
     }
